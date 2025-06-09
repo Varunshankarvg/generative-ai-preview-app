@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generative UI Designer</title>
+
+  <!-- ✅ Local Tailwind build -->
+  <link rel="stylesheet" href="./assets/css/build/tailwind.css" />
+
+  <!-- ✅ DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
+
+  <!-- ✅ Flowbite -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+
+  <!-- ✅ FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- ✅ Highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-8 space-y-6">
+    <h1 class="text-3xl font-bold text-center text-blue-600">
+      🎨 Generative UI Designer
+    </h1>
+
+    <!-- Style Preference Dropdown -->
+    <div>
+      <label for="styleSelect" class="block font-semibold mb-1 text-gray-700">Preferred Style Framework:</label>
+      <select
+        id="styleSelect"
+        class="w-full border rounded-lg p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="tailwind">Tailwind CSS</option>
+        <option value="daisyui">DaisyUI</option>
+        <option value="flowbite">Flowbite</option>
+        <option value="vanilla">Plain HTML/CSS</option>
+        <option value="auto">Auto Detect (Raw Prompt)</option>
+      </select>
+    </div>
+
+    <!-- Prompt input -->
+    <textarea
+      id="promptInput"
+      rows="4"
+      placeholder="Describe your UI... e.g. 'Create a login page with input fields and a button'"
+      class="w-full border rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 text-lg"
+    ></textarea>
+
+    <!-- Action Buttons -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <button
+        id="generateBtn"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+      >
+        Generate UI ✨
+      </button>
+      <button
+        id="micBtn"
+        class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 rounded-lg transition"
+      >
+        🎤 Speak
+      </button>
+      <button
+        id="downloadBtn"
+        class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition"
+      >
+        ⬇️ Download HTML
+      </button>
+    </div>
+
+    <!-- Image-Based Generation Section -->
+    <div class="border-t pt-6 mt-6 space-y-4">
+      <h3 class="text-lg font-semibold text-gray-800">🖼️ Generate from Image</h3>
+
+      <input
+        type="text"
+        id="imageUrl"
+        placeholder="Enter image URL..."
+        class="w-full border rounded-lg p-2 text-gray-700"
+      />
+
+      <div class="flex items-center gap-4">
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          class="border rounded-lg p-2 text-sm"
+        />
+        <button
+          id="generateFromImageBtn"
+          class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition"
+        >
+          Generate from Image
+        </button>
+      </div>
+    </div>
+
+    <!-- Code output with copy & download -->
+    <div class="relative">
+      <button
+        id="copyBtn"
+        class="absolute top-2 right-2 bg-gray-800 text-white text-sm px-3 py-1 rounded hover:bg-gray-700"
+      >
+        Copy Code
+      </button>
+      <pre class="mt-6 p-4 border rounded-lg bg-gray-50 text-gray-800 text-sm overflow-auto">
+        <code id="outputArea" class="language-html font-mono whitespace-pre-wrap"></code>
+      </pre>
+    </div>
+
+    <!-- Live Preview -->
+    <!-- Live Preview with Device Toggle -->
+<div class="mt-10">
+  <h2 class="text-xl font-semibold mb-2 text-gray-700">🔍 Live Preview</h2>
+
+  <!-- Device Toggle Buttons -->
+  <div class="flex justify-center space-x-4 mb-4">
+    <button
+      class="device-btn bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+      data-size="desktop"
+    >💻 Desktop</button>
+    <button
+      class="device-btn bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+      data-size="tablet"
+    >📱 Tablet</button>
+    <button
+      class="device-btn bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+      data-size="mobile"
+    >📱 Mobile</button>
+  </div>
+
+  <!-- Preview Container -->
+  <div class="overflow-x-auto">
+    <div
+      id="previewArea"
+      class="bg-white border rounded-xl shadow-inner mx-auto transition-all duration-300"
+      style="width: 100%; min-height: 500px;"
+    ></div>
+  </div>
+</div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
