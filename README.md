@@ -1,3 +1,4 @@
+
 # 🧠 Generative AI Voice & Image UI Generator
 
 This is a full-stack generative AI app that allows users to:
@@ -10,22 +11,24 @@ This is a full-stack generative AI app that allows users to:
 
 ## 🏗️ Tech Stack
 
-| Layer       | Tech                        |
-|-------------|-----------------------------|
-| Frontend    | Static HTML, JS, Tailwind CSS (in `/frontend/public`) |
-| Backend     | Node.js + Express           |
-| AI Engine   | [Ollama](https://ollama.com) (with CodeLLaMA & LLaVA models) |
+| Layer     | Tech                                           |
+|-----------|------------------------------------------------|
+| Frontend  | Static HTML, JS, Tailwind CSS (`/frontend/public`) |
+| Backend   | Node.js + Express                              |
+| AI Engine | [Ollama](https://ollama.com) (CodeLLaMA, LLaVA) |
 
 ---
 
 ## 📁 Folder Structure
 
+```
 generative-ai-preview-app/
-├── backend/ # Express server for prompt → code/image caption → code
+├── backend/      # Express server for prompt → code/image caption → code
 ├── frontend/
-│ └── public/ # Contains index.html, app.js, and preview pages
+│   └── public/   # Contains index.html, app.js, and preview pages
 ├── .gitignore
-
+├── README.md
+```
 
 ---
 
@@ -33,45 +36,44 @@ generative-ai-preview-app/
 
 ### 🔹 1. Start Ollama
 
-Make sure you have Ollama installed: https://ollama.com  
-Then run:
+Make sure you have [Ollama installed](https://ollama.com), then run:
 
 ```bash
 ollama run codellama
 ollama run llava
+```
 
-2.Start the backend
+---
 
-bash
-Copy
-Edit
+### 🔹 2. Start the Backend
+
+```bash
 cd backend
 npm install
 node index.js
+```
 
-Runs on http://localhost:5000
+- Runs on: `http://localhost:5000`
+- Endpoints:
+  - `POST /generate-ui` → Text prompt → UI code
+  - `POST /generate-ui-from-image` → Image → Caption → Code
 
-Endpoints include:
+---
 
-POST /generate-ui (text prompt → code)
+### 🔹 3. Open the Frontend
 
-POST /generate-ui-from-image (image → caption → code)
-
-🔹 3. Open the Frontend
-Navigate to:
-
-pgsql
-Copy
-Edit
+Open directly in browser:
+```
 frontend/public/index.html
-Or use a local web server or VS Code “Live Server” extension
+```
 
-✨ Features
-🧠 Text-to-UI with Tailwind CSS using CodeLLaMA
+Or use Live Server (VS Code extension).
 
-🖼️ Vision-based UI generation from images
+---
 
-💡 Works offline with local models (Ollama)
+## ✨ Features
 
-🔧 Built with Express and plain HTML/JS
-
+- 🧠 Text-to-UI with Tailwind CSS using CodeLLaMA
+- 🖼️ Vision-based UI generation from images (LLaVA)
+- 💡 100% local execution with Ollama (no cloud APIs)
+- 🔧 Built with Express and plain HTML/JS
